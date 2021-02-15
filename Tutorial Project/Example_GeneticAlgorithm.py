@@ -39,34 +39,34 @@ new_population[5, :] = [-2,   3,   -7, 6,   3,    3]
 """
 
 best_outputs = []
-num_generations = 1000
+num_generations = 100
 for generation in range(num_generations):
-    print("Generation : ", generation)
+    #print("Generation : ", generation)
     # Measuring the fitness of each chromosome in the population.
     fitness = ga.cal_pop_fitness(equation_inputs, new_population)
-    print("Fitness")
-    print(fitness)
+    #print("Fitness")
+    #print(fitness)
 
     best_outputs.append(numpy.max(numpy.sum(new_population*equation_inputs, axis=1)))
     # The best result in the current iteration.
-    print("Best result : ", numpy.max(numpy.sum(new_population*equation_inputs, axis=1)))
+    #print("Best result : ", numpy.max(numpy.sum(new_population*equation_inputs, axis=1)))
     
     # Selecting the best parents in the population for mating.
     parents = ga.select_mating_pool(new_population, fitness, 
                                       num_parents_mating)
-    print("Parents")
-    print(parents)
+    #print("Parents")
+    #print(parents)
 
     # Generating next generation using crossover.
     offspring_crossover = ga.crossover(parents,
                                        offspring_size=(pop_size[0]-parents.shape[0], num_weights))
-    print("Crossover")
-    print(offspring_crossover)
+    #print("Crossover")
+    #print(offspring_crossover)
 
     # Adding some variations to the offspring using mutation.
     offspring_mutation = ga.mutation(offspring_crossover, num_mutations=2)
-    print("Mutation")
-    print(offspring_mutation)
+    #print("Mutation")
+    #print(offspring_mutation)
 
     # Creating the new population based on the parents and offspring.
     new_population[0:parents.shape[0], :] = parents
